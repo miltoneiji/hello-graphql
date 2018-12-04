@@ -1,7 +1,8 @@
 {
   "private": true,
   "workspaces": [
-    "api"
+    "api",
+    "webapp"
   ],
   "license": "MIT"
 }
