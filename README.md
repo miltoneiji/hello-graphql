@@ -1,3 +1,3 @@
-# GraphQL auth
+# Hello GraphQL
 
-Just playing with graphql
+Just playing with graphql, relay and react.
