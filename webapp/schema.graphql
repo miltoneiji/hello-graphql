@@ -1,0 +1,11 @@
+type Monster {
+  id: ID!
+  name: String!
+  hp: Int!
+  exp: Int!
+}
+
+type Query {
+  monsters: [Monster]
+}
+
