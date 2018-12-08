@@ -1,11 +1,45 @@
-type Monster {
-  id: ID!
-  name: String!
-  hp: Int!
-  exp: Int!
+"""The root of all mutations"""
+type Mutation {
+  UserLoginWithEmailMutation(input: UserLoginWithEmailInput!): UserLoginWithEmailPayload
+  UserRegisterWithEmailMutation(input: UserRegisterWithEmailInput!): UserRegisterWithEmailPayload
 }
 
+"""The root of all queries"""
 type Query {
-  monsters: [Monster]
+  me: User
+}
+
+"""User data"""
+type User {
+  """The ID of an object"""
+  id: ID!
+  _id: String
+  name: String
+  email: String
+}
+
+input UserLoginWithEmailInput {
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type UserLoginWithEmailPayload {
+  token: String
+  error: String
+  clientMutationId: String
+}
+
+input UserRegisterWithEmailInput {
+  name: String!
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type UserRegisterWithEmailPayload {
+  token: String
+  error: String
+  clientMutationId: String
 }
 
