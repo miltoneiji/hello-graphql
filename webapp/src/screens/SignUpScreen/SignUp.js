@@ -25,10 +25,10 @@ const Title = styled.h1`
 
 const SignUp = ({
   name,
-  username,
+  email,
   password,
   onNameChange,
-  onUsernameChange,
+  onEmailChange,
   onPasswordChange,
   onSubmit,
   isSubmitting
@@ -46,9 +46,9 @@ const SignUp = ({
         />
         <InputField
           type='text'
-          value={username}
-          placeholder='Username'
-          onChange={onUsernameChange}
+          value={email}
+          placeholder='Email'
+          onChange={onEmailChange}
           style={{ marginBottom: 8 }}
         />
         <InputField

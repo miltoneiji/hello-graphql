@@ -24,9 +24,9 @@ const Title = styled.h1`
 `;
 
 const SignIn = ({
-  username,
+  email,
   password,
-  onUsernameChange,
+  onEmailChange,
   onPasswordChange,
   onSubmit,
   isSubmitting
@@ -37,9 +37,9 @@ const SignIn = ({
       <form onSubmit={onSubmit}>
         <InputField
           type='text'
-          placeholder='Username'
-          value={username}
-          onChange={onUsernameChange}
+          placeholder='Email'
+          value={email}
+          onChange={onEmailChange}
           style={{ marginBottom: 8 }}
         />
         <InputField

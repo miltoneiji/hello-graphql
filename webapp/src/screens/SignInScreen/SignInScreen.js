@@ -9,10 +9,10 @@ class SignInScreen extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
 
     this.state = {
-      username: '',
+      email: '',
       password: '',
       isSubmitting: false,
     };
@@ -23,8 +23,8 @@ class SignInScreen extends React.Component {
     console.log(this.state);
   }
 
-  handleUsernameChange(evt) {
-    this.setState({ username: evt.target.value });
+  handleEmailChange(evt) {
+    this.setState({ email: evt.target.value });
   }
 
   handlePasswordChange(evt) {
@@ -32,13 +32,13 @@ class SignInScreen extends React.Component {
   }
 
   render() {
-    const { username, password, isSubmitting } = this.state;
+    const { email, password, isSubmitting } = this.state;
 
     return(
       <SignIn
-        username={username}
+        email={email}
         password={password}
-        onUsernameChange={this.handleUsernameChange}
+        onEmailChange={this.handleEmailChange}
         onPasswordChange={this.handlePasswordChange}
         isSubmitting={isSubmitting}
         onSubmit={this.handleSubmit}
