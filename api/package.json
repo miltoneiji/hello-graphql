@@ -9,7 +9,9 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
-    "graphql": "^14.0.2"
+    "graphql": "^14.0.2",
+    "graphql-relay": "^0.5.5",
+    "jsonwebtoken": "^8.4.0"
   },
   "scripts": {
     "start": "babel-node ./src/server.js"

@@ -3,60 +3,28 @@ import graphQLHTTP from 'express-graphql';
 import cors from 'cors';
 import { buildSchema } from 'graphql';
 
-import config from './config.js';
+import config from './config';
+import schema from './schema';
+import database from './database';
+import { getUserIdFromToken } from './auth';
 
 const app = express();
 app.use(cors());
 
-const monsters = [
-  {
-    id: 'monsters_1',
-    name: 'Cyclops',
-    hp: 260,
-    exp: 150,
-  },
-  {
-    id: 'monsters_2',
-    name: 'Dwarf',
-    hp: 90,
-    exp: 45,
-  },
-  {
-    id: 'monsters_3',
-    name: 'Minotaur',
-    hp: 100,
-    exp: 50,
-  }
-];
+const graphqlSettingsPerRequest = async req => {
+  const userId = getUserIdFromToken(req.headers.authorization);
 
-const schema = buildSchema(`
-  type Query {
-    monsters: [Monster]
-  }
-
-  type Monster {
-    id: ID!
-    name: String!
-    hp: Int!
-    exp: Int!
-  }
-`);
-
-const rootValue = {
-  monsters: () => monsters,
+  return {
+    schema,
+    graphiql: config.env !== 'production',
+    context: {
+      user: { _id: userId },
+      database,
+    }
+  };
 };
 
-app.get('/', graphQLHTTP({
-  rootValue,
-  schema,
-  graphiql: true,
-}));
-
-app.post('/', graphQLHTTP({
-  rootValue,
-  schema,
-  graphiql: false,
-}));
+app.all('/', graphQLHTTP(graphqlSettingsPerRequest));
 
 const port = config.port;
 app.listen(port, () => {
