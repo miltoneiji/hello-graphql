@@ -28,6 +28,11 @@ const Button = styled.button`
   line-height: 1;
 
   text-decoration: none !important;
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: default;
+  }
 `;
 
 export default Button;

@@ -23,9 +23,19 @@ const Title = styled.h1`
   margin-bottom: 32px;
 `;
 
+const ErrorMessage = styled.p`
+  font-family: sans-serif;
+  font-size: 16px;
+  color: red;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 16px;
+`;
+
 const SignIn = ({
   email,
   password,
+  error,
   onEmailChange,
   onPasswordChange,
   onSubmit,
@@ -49,6 +59,7 @@ const SignIn = ({
           onChange={onPasswordChange}
           style={{ marginBottom: 32 }}
         />
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button type="submit" disabled={isSubmitting} style={{ marginBottom: 8 }}>
           Login
         </Button>
