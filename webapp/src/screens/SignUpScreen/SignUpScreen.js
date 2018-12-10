@@ -44,6 +44,7 @@ class SignUpScreen extends React.Component {
 
         // For simplicity
         localStorage.jwt = token;
+        this.props.history.push('/');
       },
     );
   }
