@@ -7,6 +7,7 @@ const fetchQuery = (operation, variables) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': localStorage.jwt || '', // TODO: stop using localStorage
     },
     body: JSON.stringify({
       query: operation.text,

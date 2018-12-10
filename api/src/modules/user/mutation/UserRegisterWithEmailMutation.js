@@ -28,6 +28,11 @@ export default mutationWithClientMutationId({
   },
   mutateAndGetPayload: async ({ name, email, password }, context) => {
     const { database } = context;
+
+    if (!name || !email || !password) {
+      return { error: 'All fields must be non empty' };
+    }
+
     const userData = await database.userDataByEmail(email);
     if (userData) {
       return { error: 'Email already in use' };

@@ -1,6 +1,8 @@
 import React from 'react';
 
 import SignUp from './SignUp';
+import environment from '../../Environment';
+import UserRegisterWithEmailMutation from '../../mutations/UserRegisterWithEmailMutation';
 
 class SignUpScreen extends React.Component {
 
@@ -16,13 +18,34 @@ class SignUpScreen extends React.Component {
       name: '',
       email: '',
       password: '',
+      error: '',
       isSubmitting: false,
     };
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
-    console.log(this.state);
+    this.setState({ isSubmitting: true });
+    UserRegisterWithEmailMutation.commit(
+      environment,
+      {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+      },
+      ({ UserRegisterWithEmailMutation }, jsError) => {
+        this.setState({ isSubmitting: false });
+        const { token, error } = UserRegisterWithEmailMutation;
+
+        if (error) {
+          this.setState({ error });
+          return;
+        }
+
+        // For simplicity
+        localStorage.jwt = token;
+      },
+    );
   }
 
   handleNameChange(evt) {
@@ -38,13 +61,14 @@ class SignUpScreen extends React.Component {
   }
 
   render() {
-    const { name, email, password, isSubmitting } = this.state;
+    const { name, email, password, error, isSubmitting } = this.state;
 
     return(
       <SignUp
         name={name}
         email={email}
         password={password}
+        error={error}
         onNameChange={this.handleNameChange}
         onEmailChange={this.handleEmailChange}
         onPasswordChange={this.handlePasswordChange}
