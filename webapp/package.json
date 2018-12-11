@@ -20,12 +20,14 @@
   "scripts": {
     "build:dev": "webpack-cli",
     "start:dev": "webpack-dev-server",
-    "relay": "relay-compiler --src ./src --schema ./schema.graphql"
+    "relay": "relay-compiler --src ./src --schema ./schema.graphql",
+    "ts:check": "tsc"
   },
   "devDependencies": {
     "babel-plugin-relay": "^1.7.0",
     "graphql": "^14.0.2",
     "relay-compiler": "^1.7.0",
+    "typescript": "^3.2.2",
     "webpack-dev-server": "^3.1.10"
   }
 }
