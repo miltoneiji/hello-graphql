@@ -24,6 +24,7 @@
     "ts:check": "tsc"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.1.0",
     "babel-plugin-relay": "^1.7.0",
     "graphql": "^14.0.2",
     "relay-compiler": "^1.7.0",
