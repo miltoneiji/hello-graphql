@@ -6,6 +6,18 @@ import Paper from '../../components/Paper';
 import Button from '../../components/Button';
 import InputField from '../../components/InputField';
 
+interface ISignUpProps {
+  name: string;
+  email: string;
+  password: string;
+  error?: string;
+  isSubmitting: boolean;
+  onNameChange: (evt: React.FormEvent<HTMLInputElement>) => void;
+  onEmailChange: (evt: React.FormEvent<HTMLInputElement>) => void;
+  onPasswordChange: (evt: React.FormEvent<HTMLInputElement>) => void;
+  onSubmit: (evt: React.FormEvent<HTMLFormElement>) => void;
+}
+
 const Wrapper = styled.div`
   height: 100vh;
   display: flex;
@@ -32,7 +44,7 @@ const ErrorMessage = styled.p`
   margin-bottom: 16px;
 `;
 
-const SignUp = ({
+const SignUp:React.SFC<ISignUpProps> = ({
   name,
   email,
   password,
