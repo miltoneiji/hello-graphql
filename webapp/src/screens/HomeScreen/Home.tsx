@@ -5,7 +5,15 @@ import { Link } from 'react-router-dom';
 
 import Button from '../../components/Button';
 
-const Logged = ({ user, onLogout }) => (
+interface IHomeProps {
+  user: {
+    name: string;
+    email: string;
+  };
+  onLogout: () => void;
+}
+
+const Logged:React.SFC<IHomeProps> = ({ user, onLogout }) => (
   <div>
     <h1>You are logged!</h1>
     <div>
@@ -30,7 +38,7 @@ const NonLogged = () => (
   </div>
 );
 
-const Home = ({ user, onLogout }) => {
+const Home:React.SFC<IHomeProps> = ({ user, onLogout }) => {
   if (user)
     return <Logged user={user} onLogout={onLogout} />;
 
