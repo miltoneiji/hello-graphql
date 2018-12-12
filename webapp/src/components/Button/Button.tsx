@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+interface IButtonProps {
+  styleType?: 'primary' | 'success' | 'danger' | 'link';
+}
+
 const colors = {
   primary: '#007bff',
   success: '#28a745',
@@ -8,7 +12,7 @@ const colors = {
   link: 'transparent',
 };
 
-const Button = styled.button`
+const Button = styled.button<IButtonProps>`
   display: block;
   margin-left: auto;
   margin-right: auto;

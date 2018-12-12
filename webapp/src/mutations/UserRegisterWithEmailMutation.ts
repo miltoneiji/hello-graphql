@@ -1,4 +1,11 @@
+import { Environment } from 'relay-runtime';
 import { commitMutation, graphql } from 'react-relay';
+
+export interface IUserRegisterWithEmailInput {
+  name: string;
+  email: string;
+  password: string;
+}
 
 const mutation = graphql`
   mutation UserRegisterWithEmailMutation(
@@ -11,7 +18,11 @@ const mutation = graphql`
   }
 `;
 
-const commit = (environment, { name, email, password }, onCompleted) => {
+const commit = (
+  environment: Environment,
+  { name, email, password }: IUserRegisterWithEmailInput,
+  onCompleted: any, // TODO: fix it
+) => {
   const variables = {
     input: {
       name,
