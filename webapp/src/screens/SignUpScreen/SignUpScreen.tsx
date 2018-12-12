@@ -1,12 +1,22 @@
 import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 
 import SignUp from './SignUp';
 import environment from '../../Environment';
 import UserRegisterWithEmailMutation from '../../mutations/UserRegisterWithEmailMutation';
 
-class SignUpScreen extends React.Component {
+interface ISignUpScreenProps extends RouteComponentProps<any>{}
+interface ISignUpScreenState {
+  name: string;
+  email: string;
+  password: string;
+  error: string;
+  isSubmitting: boolean;
+}
 
-  constructor(props) {
+class SignUpScreen extends React.Component<ISignUpScreenProps, ISignUpScreenState> {
+
+  constructor(props: ISignUpScreenProps) {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,7 +33,7 @@ class SignUpScreen extends React.Component {
     };
   }
 
-  handleSubmit(evt) {
+  handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     this.setState({ isSubmitting: true });
     UserRegisterWithEmailMutation.commit(
@@ -33,7 +43,10 @@ class SignUpScreen extends React.Component {
         email: this.state.email,
         password: this.state.password,
       },
-      ({ UserRegisterWithEmailMutation }, jsError) => {
+      (
+        { UserRegisterWithEmailMutation }: any, // TODO: fix it
+        jsError?: string
+      ) => {
         this.setState({ isSubmitting: false });
         const { token, error } = UserRegisterWithEmailMutation;
 
@@ -49,15 +62,15 @@ class SignUpScreen extends React.Component {
     );
   }
 
-  handleNameChange(evt) {
+  handleNameChange(evt: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ name: evt.target.value });
   }
 
-  handleEmailChange(evt) {
+  handleEmailChange(evt: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ email: evt.target.value });
   }
 
-  handlePasswordChange(evt) {
+  handlePasswordChange(evt: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ password: evt.target.value });
   }
 

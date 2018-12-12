@@ -12,9 +12,9 @@ interface ISignUpProps {
   password: string;
   error?: string;
   isSubmitting: boolean;
-  onNameChange: (evt: React.FormEvent<HTMLInputElement>) => void;
-  onEmailChange: (evt: React.FormEvent<HTMLInputElement>) => void;
-  onPasswordChange: (evt: React.FormEvent<HTMLInputElement>) => void;
+  onNameChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onEmailChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onPasswordChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (evt: React.FormEvent<HTMLFormElement>) => void;
 }
 
