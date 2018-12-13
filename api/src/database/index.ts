@@ -1,0 +1,1 @@
+export { InMemoryDatabase } from './InMemoryDatabase';

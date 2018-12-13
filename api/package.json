@@ -4,7 +4,6 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.2.0",
-    "@babel/node": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
@@ -14,6 +13,16 @@
     "jsonwebtoken": "^8.4.0"
   },
   "scripts": {
-    "start": "babel-node ./src/server.js"
+    "build": "rm -fr ./dist/ && webpack-cli",
+    "start": "node ./dist/server.js",
+    "ts:check": "tsc"
+  },
+  "devDependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "typescript": "^3.2.2",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
   }
 }
