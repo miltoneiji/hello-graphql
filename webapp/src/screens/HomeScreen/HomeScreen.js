@@ -7,9 +7,6 @@ import Authentication from '../../features/Authentication';
 import Home from './Home';
 
 class HomeScreen extends React.Component {
-
-
-
   render() {
     const query = graphql`
       query HomeScreenQuery {

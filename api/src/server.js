@@ -6,11 +6,12 @@ import { buildSchema } from 'graphql';
 
 import config from './config';
 import schema from './schema';
-import database from './database';
+import { InMemoryDatabase } from './database';
 import { getUserIdFromToken } from './auth';
 
 const app = express();
 app.use(cors());
+const database = new InMemoryDatabase();
 
 const graphqlSettingsPerRequest = async req => {
   const userId = getUserIdFromToken(req.headers.authorization);
