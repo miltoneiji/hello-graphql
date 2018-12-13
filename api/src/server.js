@@ -4,7 +4,8 @@ import graphQLHTTP from 'express-graphql';
 import cors from 'cors';
 import { buildSchema } from 'graphql';
 
-import config from './config';
+import config from '../config';
+
 import schema from './schema';
 import { InMemoryDatabase } from './database';
 import { getUserIdFromToken } from './auth';

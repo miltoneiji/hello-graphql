@@ -1,5 +1,5 @@
 const path = require('path');
-const config = require('./src/config');
+const config = require('./config');
 
 module.exports = {
   mode: config.env,
