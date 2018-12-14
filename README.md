@@ -2,7 +2,7 @@
 
 `hello-graphql` is a playground where I learn and test new technologies. Even though the name of this repository refers only to GraphQL, it already has other cool stuff like Relay Modern and Typescript.
 
-Maybe you want to check the [issues](https://github.com/miltoneiji/hello-graphql/issues).
+Check the [issues](https://github.com/miltoneiji/hello-graphql/issues).
 
 # Usage
 
