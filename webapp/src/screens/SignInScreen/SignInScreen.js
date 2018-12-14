@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import SignIn from './SignIn';
+import SignIn from "./SignIn";
 
 class SignInScreen extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -12,9 +11,9 @@ class SignInScreen extends React.Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
 
     this.state = {
-      email: '',
-      password: '',
-      isSubmitting: false,
+      email: "",
+      password: "",
+      isSubmitting: false
     };
   }
 
@@ -34,7 +33,7 @@ class SignInScreen extends React.Component {
   render() {
     const { email, password, isSubmitting } = this.state;
 
-    return(
+    return (
       <SignIn
         email={email}
         password={password}

@@ -1,15 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 interface IButtonProps {
-  styleType?: 'primary' | 'success' | 'danger' | 'link';
+  styleType?: "primary" | "success" | "danger" | "link";
 }
 
 const colors = {
-  primary: '#007bff',
-  success: '#28a745',
-  danger: '#dc3545',
-  link: 'transparent',
+  primary: "#007bff",
+  success: "#28a745",
+  danger: "#dc3545",
+  link: "transparent"
 };
 
 const Button = styled.button<IButtonProps>`
@@ -20,8 +20,9 @@ const Button = styled.button<IButtonProps>`
   max-width: 250px;
   border-radius: 50px;
   padding: 10px 16px;
-  background-color: ${props => colors[props.styleType || 'primary']};
-  color: ${props => props.styleType && props.styleType === 'link' ? '#007bff' : 'white'}
+  background-color: ${props => colors[props.styleType || "primary"]};
+  color: ${props =>
+    props.styleType && props.styleType === "link" ? "#007bff" : "white"}
   cursor: pointer;
 
 
