@@ -1,17 +1,16 @@
 import { Environment } from 'relay-runtime';
 import { commitMutation, graphql } from 'react-relay';
 
-export interface IUserRegisterWithEmailInput {
-  name: string;
+export interface IUserLoginWithEmailInput {
   email: string;
   password: string;
 }
 
 const mutation = graphql`
-  mutation UserRegisterWithEmailMutation(
-    $input: UserRegisterWithEmailInput!
+  mutation UserLoginWithEmailMutation(
+    $input: UserLoginWithEmailInput!
   ) {
-    UserRegisterWithEmailMutation(input: $input) {
+    UserLoginWithEmailMutation(input: $input) {
       token
       error
     }
@@ -20,12 +19,11 @@ const mutation = graphql`
 
 const commit = (
   environment: Environment,
-  { name, email, password }: IUserRegisterWithEmailInput,
+  { email, password }: IUserLoginWithEmailInput,
   onCompleted: any, // TODO: fix it
 ) => {
   const variables = {
     input: {
-      name,
       email,
       password,
     }
@@ -37,7 +35,7 @@ const commit = (
       mutation,
       variables,
       onCompleted,
-      onError: err => console.error(`[webapp] UserRegisterWithEmailMutation.js: ${err}`),
+      onError: err => console.log(`[webpackk] UserLoginWithEmailMutation.js: ${err}`),
     }
   );
 };

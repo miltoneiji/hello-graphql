@@ -7,6 +7,17 @@ import Authentication from '../../features/Authentication';
 import Home from './Home';
 
 class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  handleLogout() {
+    Authentication.logout();
+    this.props.history.push('/login');
+  }
+
   render() {
     const query = graphql`
       query HomeScreenQuery {
@@ -28,7 +39,7 @@ class HomeScreen extends React.Component {
             return <div>Loading</div>;
           }
           else {
-            return <Home user={props.me} onLogout={Authentication.logout} />;
+            return <Home user={props.me} onLogout={this.handleLogout} />;
           }
         }}
       />

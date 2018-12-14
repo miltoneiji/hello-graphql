@@ -3411,6 +3411,10 @@ ignore-walk@^3.0.1:
   dependencies:
     minimatch "^3.0.4"
 
+immutable@^3.7.6:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
+
 immutable@~3.7.6:
   version "3.7.6"
   resolved "http://registry.npmjs.org/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
@@ -5602,6 +5606,13 @@ regjsparser@^0.6.0:
 relateurl@0.2.x:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
+
+relay-compiler-language-typescript@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/relay-compiler-language-typescript/-/relay-compiler-language-typescript-1.1.1.tgz#cf5a150012606f442f7a0887fbb72837b164ceb1"
+  dependencies:
+    immutable "^3.7.6"
+    invariant "^2.2.2"
 
 relay-compiler@^1.7.0:
   version "1.7.0"
