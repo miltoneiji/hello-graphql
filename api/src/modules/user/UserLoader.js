@@ -1,4 +1,4 @@
-import UserModel from './UserModel';
+import UserModel from "./UserModel";
 
 export const load = async (context, _id) => {
   if (!_id) {
@@ -8,7 +8,7 @@ export const load = async (context, _id) => {
   let data;
   try {
     data = await context.database.userDataById(_id);
-  } catch(err) {
+  } catch (err) {
     console.log(err);
     return null;
   }
@@ -16,6 +16,6 @@ export const load = async (context, _id) => {
   return {
     _id: data._id,
     name: data.name,
-    email: data.email,
+    email: data.email
   };
 };
