@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-import Paper from '../../components/Paper';
-import Button from '../../components/Button';
-import InputField from '../../components/InputField';
+import Paper from "../../components/Paper";
+import Button from "../../components/Button";
+import InputField from "../../components/InputField";
 
 interface ISignUpProps {
   name: string;
@@ -44,7 +44,7 @@ const ErrorMessage = styled.p`
   margin-bottom: 16px;
 `;
 
-const SignUp:React.SFC<ISignUpProps> = ({
+const SignUp: React.SFC<ISignUpProps> = ({
   name,
   email,
   password,
@@ -60,32 +60,36 @@ const SignUp:React.SFC<ISignUpProps> = ({
       <Title>Register</Title>
       <form onSubmit={onSubmit}>
         <InputField
-          type='text'
+          type="text"
           value={name}
-          placeholder='Name'
+          placeholder="Name"
           onChange={onNameChange}
           style={{ marginBottom: 24 }}
         />
         <InputField
-          type='text'
+          type="text"
           value={email}
-          placeholder='Email'
+          placeholder="Email"
           onChange={onEmailChange}
           style={{ marginBottom: 8 }}
         />
         <InputField
-          type='password'
+          type="password"
           value={password}
-          placeholder='Password'
+          placeholder="Password"
           onChange={onPasswordChange}
           style={{ marginBottom: 32 }}
         />
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        <Button type="submit" disabled={isSubmitting} style={{ marginBottom: 8 }}>
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          style={{ marginBottom: 8 }}
+        >
           Create account
         </Button>
         <Link to="/login">
-          <Button disabled={isSubmitting} styleType='link'>
+          <Button disabled={isSubmitting} styleType="link">
             Login
           </Button>
         </Link>

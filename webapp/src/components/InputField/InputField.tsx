@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const InputField = styled.input`
   display: block;
@@ -11,7 +11,7 @@ const InputField = styled.input`
   border-style: solid;
   border-color: #959595;
   padding: 10px 16px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 
   font-family: sans-serif;
   font-size: 20px;
