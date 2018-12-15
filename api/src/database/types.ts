@@ -6,6 +6,7 @@ export interface IUserData {
 }
 
 export interface IDatabase {
+  reset: () => void;
   userDataByEmail: (email: string) => IUserData | null;
   userDataById: (userId: string) => IUserData | null;
   insertUserData: (

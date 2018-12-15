@@ -11,6 +11,10 @@ class InMemoryDatabase implements IDatabase {
     };
   }
 
+  reset() {
+    this.inMemoryData = { users: {} };
+  }
+
   userDataById(userId: string) {
     return this.inMemoryData.users[userId] || null;
   }
