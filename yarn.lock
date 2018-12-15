@@ -716,6 +716,10 @@
     "@types/react" "*"
     csstype "^2.2.0"
 
+"@types/yup@^0.26.3":
+  version "0.26.3"
+  resolved "https://registry.yarnpkg.com/@types/yup/-/yup-0.26.3.tgz#7991240645fc8171481838b01a19e355dfdb17fc"
+
 "@webassemblyjs/ast@1.7.11":
   version "1.7.11"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.7.11.tgz#b988582cafbb2b095e8b556526f30c90d057cace"

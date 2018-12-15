@@ -1,5 +1,6 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { RouteComponentProps } from 'react-router-dom';
+import { Formik, FormikProps, FormikActions } from 'formik';
 import * as yup from 'yup';
 
 import SignIn from './SignIn';
@@ -15,9 +16,19 @@ const SignInFormSchema = yup.object().shape({
     .required('Password is required!'),
 });
 
-const SignInScreen: React.SFC<{}> = props => {
-  const handleSubmit = (values, { setSubmitting, setErrors }) => {
-    const { email, password, error } = values;
+export interface ISignInFormInput {
+  email: string;
+  password: string;
+  serverError?: string;
+}
+
+interface ISignInScreenProps extends RouteComponentProps<any> {}
+
+const SignInScreen: React.SFC<ISignInScreenProps> = props => {
+  const handleSubmit = (values: ISignInFormInput, formikBag: FormikActions<ISignInFormInput> ) => {
+    const { email, password } = values;
+    const { setSubmitting, setErrors } = formikBag;
+
     UserLoginWithEmailMutation.commit(
       environment,
       { email, password },
