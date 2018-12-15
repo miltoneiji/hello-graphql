@@ -1,3 +1,3 @@
 module.exports = {
-  graphql_url: 'http://localhost:3000'
+  graphql_url: "http://localhost:3000"
 };

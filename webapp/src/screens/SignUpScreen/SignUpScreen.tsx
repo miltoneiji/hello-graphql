@@ -1,11 +1,11 @@
-import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import React from "react";
+import { RouteComponentProps } from "react-router-dom";
 
-import SignUp from './SignUp';
-import environment from '../../Environment';
-import UserRegisterWithEmailMutation from '../../mutations/UserRegisterWithEmailMutation';
+import SignUp from "./SignUp";
+import environment from "../../Environment";
+import UserRegisterWithEmailMutation from "../../mutations/UserRegisterWithEmailMutation";
 
-interface ISignUpScreenProps extends RouteComponentProps<any>{}
+interface ISignUpScreenProps extends RouteComponentProps<any> {}
 interface ISignUpScreenState {
   name: string;
   email: string;
@@ -14,8 +14,10 @@ interface ISignUpScreenState {
   isSubmitting: boolean;
 }
 
-class SignUpScreen extends React.Component<ISignUpScreenProps, ISignUpScreenState> {
-
+class SignUpScreen extends React.Component<
+  ISignUpScreenProps,
+  ISignUpScreenState
+> {
   constructor(props: ISignUpScreenProps) {
     super(props);
 
@@ -25,11 +27,11 @@ class SignUpScreen extends React.Component<ISignUpScreenProps, ISignUpScreenStat
     this.handleEmailChange = this.handleEmailChange.bind(this);
 
     this.state = {
-      name: '',
-      email: '',
-      password: '',
-      error: '',
-      isSubmitting: false,
+      name: "",
+      email: "",
+      password: "",
+      error: "",
+      isSubmitting: false
     };
   }
 
@@ -41,7 +43,7 @@ class SignUpScreen extends React.Component<ISignUpScreenProps, ISignUpScreenStat
       {
         name: this.state.name,
         email: this.state.email,
-        password: this.state.password,
+        password: this.state.password
       },
       (
         { UserRegisterWithEmailMutation }: any, // TODO: fix it
@@ -57,8 +59,8 @@ class SignUpScreen extends React.Component<ISignUpScreenProps, ISignUpScreenStat
 
         // For simplicity
         localStorage.jwt = token;
-        this.props.history.push('/');
-      },
+        this.props.history.push("/");
+      }
     );
   }
 
@@ -77,7 +79,7 @@ class SignUpScreen extends React.Component<ISignUpScreenProps, ISignUpScreenStat
   render() {
     const { name, email, password, error, isSubmitting } = this.state;
 
-    return(
+    return (
       <SignUp
         name={name}
         email={email}

@@ -15,12 +15,16 @@
   "scripts": {
     "build": "rm -fr ./dist/ && webpack-cli",
     "start": "node ./dist/server.js",
-    "ts:check": "tsc"
+    "ts:check": "tsc",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-typescript": "^7.1.0",
     "babel-loader": "^8.0.4",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
+    "prettier": "^1.15.3",
     "typescript": "^3.2.2",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2"
