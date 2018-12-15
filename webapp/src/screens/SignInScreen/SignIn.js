@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Form, Field, ErrorMessage } from "formik";
 
 import Paper from "../../components/Paper";
 import Button from "../../components/Button";
@@ -23,14 +24,14 @@ const Title = styled.h1`
   margin-bottom: 32px;
 `;
 
-const ErrorMessage = styled.p`
-  font-family: sans-serif;
-  font-size: 16px;
-  color: red;
-  text-align: center;
-  margin: 0;
-  margin-bottom: 16px;
-`;
+//const ErrorMessage = styled.p`
+//  font-family: sans-serif;
+//  font-size: 16px;
+//  color: red;
+//  text-align: center;
+//  margin: 0;
+//  margin-bottom: 16px;
+//`;
 
 const SignIn = ({
   email,
@@ -44,35 +45,31 @@ const SignIn = ({
   <Wrapper>
     <Paper>
       <Title>Log In</Title>
-      <form onSubmit={onSubmit}>
-        <InputField
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={onEmailChange}
-          style={{ marginBottom: 8 }}
+      <Form>
+        <Field
+          type="email"
+          name="email"
+          render={({field}) => (
+            <InputField {...field} style={{ marginBottom: 8 }} placeholder={"Email"} />
+          )}
         />
-        <InputField
+        <Field
           type="password"
-          placeholder="Password"
-          value={password}
-          onChange={onPasswordChange}
-          style={{ marginBottom: 32 }}
+          name="password"
+          render={({field}) => (
+            <InputField {...field} style={{ marginBottom: 32 }} placeholder={"Password"} />
+          )}
         />
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          style={{ marginBottom: 8 }}
-        >
-          Login
+        <ErrorMessage name="password" component="div" />
+        <Button type="submit" disabled={isSubmitting} style={{ marginBottom: 8 }}>
+          Create account
         </Button>
-        <Link to="/register">
-          <Button disabled={isSubmitting} styleType="link">
-            Create account
-          </Button>
-        </Link>
-      </form>
+      </Form>
+      <Link to="/register">
+        <Button disabled={isSubmitting} styleType="link">
+          Create account
+        </Button>
+      </Link>
     </Paper>
   </Wrapper>
 );
