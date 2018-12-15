@@ -24,47 +24,57 @@ const Title = styled.h1`
   margin-bottom: 32px;
 `;
 
-//const ErrorMessage = styled.p`
-//  font-family: sans-serif;
-//  font-size: 16px;
-//  color: red;
-//  text-align: center;
-//  margin: 0;
-//  margin-bottom: 16px;
-//`;
+const ErrorMessageWithStyle = styled.p`
+  font-family: sans-serif;
+  font-size: 16px;
+  color: red;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 16px;
+`;
 
 const SignIn = ({
   email,
   password,
-  error,
   onEmailChange,
   onPasswordChange,
   onSubmit,
-  isSubmitting
+  isSubmitting,
+  errors,
 }) => (
   <Wrapper>
     <Paper>
       <Title>Log In</Title>
       <Form>
-        <Field
-          type="email"
-          name="email"
-          render={({field}) => (
-            <InputField {...field} style={{ marginBottom: 8 }} placeholder={"Email"} />
-          )}
-        />
-        <Field
-          type="password"
-          name="password"
-          render={({field}) => (
-            <InputField {...field} style={{ marginBottom: 32 }} placeholder={"Password"} />
-          )}
-        />
-        <ErrorMessage name="password" component="div" />
+        <div style={{ marginBottom: 8 }}>
+          <Field
+            name="email"
+            render={({field}) => (
+              <InputField {...field} placeholder={"Email"} />
+            )}
+          />
+          <ErrorMessage
+            name="email"
+            render={error => <ErrorMessageWithStyle>{error}</ErrorMessageWithStyle>}
+          />
+        </div>
+        <div style={{ marginBottom: 32 }}>
+          <Field
+            name="password"
+            render={({field}) => (
+              <InputField {...field} placeholder={"Password"} type="password" />
+            )}
+          />
+          <ErrorMessage
+            name="password"
+            render={error => <ErrorMessageWithStyle>{error}</ErrorMessageWithStyle>}
+          />
+        </div>
         <Button type="submit" disabled={isSubmitting} style={{ marginBottom: 8 }}>
-          Create account
+          Login
         </Button>
       </Form>
+      { errors.serverError && (<ErrorMessageWithStyle>{errors.serverError}</ErrorMessageWithStyle>)}
       <Link to="/register">
         <Button disabled={isSubmitting} styleType="link">
           Create account

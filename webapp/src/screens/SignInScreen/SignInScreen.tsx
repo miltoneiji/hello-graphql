@@ -1,87 +1,48 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import { Formik } from 'formik';
+import * as yup from 'yup';
 
 import SignIn from './SignIn';
 import environment from '../../Environment';
 import UserLoginWithEmailMutation from '../../mutations/UserLoginWithEmailMutation';
 
-const handleSubmit = (evt: any) => {
-  console.log(evt);
+const SignInFormSchema = yup.object().shape({
+  email: yup.string()
+    .email('Email is not valid!')
+    .required('Email is required!'),
+  password: yup.string()
+    .min(6, 'Password has to be longer than 6 characters!')
+    .required('Password is required!'),
+});
+
+const SignInScreen: React.SFC<{}> = props => {
+  const handleSubmit = (values, { setSubmitting, setErrors }) => {
+    const { email, password, error } = values;
+    UserLoginWithEmailMutation.commit(
+      environment,
+      { email, password },
+      ({ UserLoginWithEmailMutation }: any, jsError?: string) => {
+        const { token, error } = UserLoginWithEmailMutation;
+        setSubmitting(false);
+
+        if (error) {
+          setErrors({ serverError: error });
+        } else {
+          localStorage.jwt = token;
+          props.history.push('/');
+        }
+      }
+    );
+  };
+
+  return (
+    <Formik
+      initialValues={{ email: '', password: '', error: '' }}
+      onSubmit={handleSubmit}
+      validationSchema={SignInFormSchema}
+      render={SignIn}
+    />
+  );
 };
-
-const SignInScreen: React.SFC<{}> = () => (
-  <Formik
-    initialValues={{ email: '', password: '', error: '' }}
-    onSubmit={handleSubmit}
-    render={SignIn}
-  />
-);
-
-//class SignInScreen extends React.Component<ISignInScreenProps, ISignInScreenState> {
-//
-//  constructor(props: ISignInScreenProps) {
-//    super(props);
-//
-//    this.handleSubmit = this.handleSubmit.bind(this);
-//    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-//    this.handleEmailChange = this.handleEmailChange.bind(this);
-//
-//    this.state = {
-//      email: '',
-//      password: '',
-//      error: '',
-//      isSubmitting: false,
-//    };
-//  }
-//
-//  handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
-//    evt.preventDefault();
-//    this.setState({ isSubmitting: true });
-//    UserLoginWithEmailMutation.commit(
-//      environment,
-//      {
-//        email: this.state.email,
-//        password: this.state.password,
-//      },
-//      ({ UserLoginWithEmailMutation }: any, jsError?: string) => {
-//        this.setState({ isSubmitting: false });
-//        const { token, error } = UserLoginWithEmailMutation;
-//
-//        if (error) {
-//          this.setState({ error });
-//          return;
-//        }
-//
-//        localStorage.jwt = token;
-//        this.props.history.push('/');
-//      },
-//    );
-//  }
-//
-//  handleEmailChange(evt: React.ChangeEvent<HTMLInputElement>) {
-//    this.setState({ email: evt.target.value });
-//  }
-//
-//  handlePasswordChange(evt : React.ChangeEvent<HTMLInputElement>) {
-//    this.setState({ password: evt.target.value });
-//  }
-//
-//  render() {
-//    const { email, password, isSubmitting, error } = this.state;
-//
-//    return(
-//      <SignIn
-//        email={email}
-//        error={error}
-//        password={password}
-//        onEmailChange={this.handleEmailChange}
-//        onPasswordChange={this.handlePasswordChange}
-//        isSubmitting={isSubmitting}
-//        onSubmit={this.handleSubmit}
-//      />
-//    );
-//  }
-//}
 
 export default SignInScreen;
