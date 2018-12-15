@@ -1,13 +1,13 @@
-import crypto from 'crypto';
+import crypto from "crypto";
 
-import { IUserData, IDatabase } from './types';
+import { IUserData, IDatabase } from "./types";
 
 class InMemoryDatabase implements IDatabase {
   private inMemoryData: { users: { [key: string]: IUserData } };
 
   constructor() {
     this.inMemoryData = {
-      users: {},
+      users: {}
     };
   }
 
@@ -26,7 +26,15 @@ class InMemoryDatabase implements IDatabase {
     return userData || null;
   }
 
-  insertUserData({ name, email, password }: { name: string, email: string, password: string }) {
+  insertUserData({
+    name,
+    email,
+    password
+  }: {
+    name: string;
+    email: string;
+    password: string;
+  }) {
     const _id = this.createId();
     const passwordHash = this.calcHash(password);
 
@@ -34,13 +42,19 @@ class InMemoryDatabase implements IDatabase {
       _id,
       name,
       email,
-      passwordHash,
+      passwordHash
     };
 
     return this.inMemoryData.users[_id];
   }
 
-  userDataByEmailAndPassword({ email, password }: { email: string, password: string }) {
+  userDataByEmailAndPassword({
+    email,
+    password
+  }: {
+    email: string;
+    password: string;
+  }) {
     const passwordHash = this.calcHash(password);
     const userData = Object.keys(this.inMemoryData.users)
       .map(key => this.inMemoryData.users[key])
@@ -48,12 +62,15 @@ class InMemoryDatabase implements IDatabase {
     return userData || null;
   }
 
-  private createId():string {
-    return crypto.randomBytes(10).toString('hex');
+  private createId(): string {
+    return crypto.randomBytes(10).toString("hex");
   }
 
   private calcHash(word: string): string {
-    return crypto.createHash('md5').update(word).digest('hex');
+    return crypto
+      .createHash("md5")
+      .update(word)
+      .digest("hex");
   }
 }
 
